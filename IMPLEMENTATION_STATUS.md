@@ -27,6 +27,20 @@ and before ending each work session. Do not infer completion from the existence 
 - Live rectangle-page verification remains a user approval check because the deployed application
   was not changed during this review.
 
+## Latest Local Readability Review - 2026-10-27
+
+- **Status:** `IMPLEMENTED LOCALLY - LIVE REVIEW PENDING`
+- Long calibration and depth values now use compact primary values with complete readable tables;
+  3D coordinates and diagnostic metrics use consistent precision and units.
+- Rectangle records now distinguish accepted geometry, diagnostic-only reconstruction, and geometry
+  accepted but physically inaccurate results. Existing machine-readable statuses and values are unchanged.
+- Rectangle, circle, and polygon physical comparisons use concise summaries; full records remain in
+  collapsed technical sections. Circle pages explicitly show the physical diameter reference and that
+  no stereo diameter was accepted.
+- Added regression coverage for truncation, status separation, concise comparisons, collapsed records,
+  missing evidence, and public-copy restrictions. Module 7 currently passes 66 tests.
+- No calibration, reconstruction, measurement, threshold, source JSON, or evidence image was changed.
+
 ## Current Status
 
 - **Overall project status:** Phase 2A software foundation, Phase 2B real calibration/stereo validation, and Phase 3 object-dimension software implementation are complete for their stated evidence. Phase 3A now has three real rectangle experiments; the third has verified FREE ADMISSION ruler measurements, but stereo accuracy remains outside the physical intervals and pose/model consistency remains unresolved.

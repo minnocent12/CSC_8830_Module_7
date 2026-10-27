@@ -23,6 +23,11 @@ and structured diagnostics while retaining the underlying machine-readable statu
 detail records. It is local and uncommitted; live deployment verification and publication remain
 outside this change.
 
+The 2026-10-27 readability review further separates accepted geometry from diagnostic-only and
+physically unvalidated results, replaces long primary metric values with compact values plus readable
+tables, and adds concise shape-specific physical comparison summaries. The source data and saved
+scientific results remain unchanged; this review is local and uncommitted.
+
 The plan follows the authoritative requirements in
 `MODULE_7_ASSIGNMENT_QUESTIONS.md` and `MODULE_7_ASSIGNMENT_INSTRUCTIONS.md`, the root
 `Assignments/AGENTS.md`, the root Git protocol, and the existing Module 2–6 architecture.
