@@ -18,6 +18,11 @@ outer-rim correspondences pass point-level stereo checks, but the recovered rim 
   Question 1 workflow and required standalone webpage are implemented and tested locally. Public
   dashboard integration, repository publication, and deployment remain separately authorized work.
 
+The latest local public-UI polish review improves student-facing status labels, metric formatting,
+and structured diagnostics while retaining the underlying machine-readable statuses and technical
+detail records. It is local and uncommitted; live deployment verification and publication remain
+outside this change.
+
 The plan follows the authoritative requirements in
 `MODULE_7_ASSIGNMENT_QUESTIONS.md` and `MODULE_7_ASSIGNMENT_INSTRUCTIONS.md`, the root
 `Assignments/AGENTS.md`, the root Git protocol, and the existing Module 2–6 architecture.

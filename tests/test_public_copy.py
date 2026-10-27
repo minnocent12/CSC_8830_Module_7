@@ -12,6 +12,7 @@ INTERNAL = re.compile(
     r"IMPLEMENTATION_PLAN|\b[A-Za-z_]+\.md\b|\bdocs/|\bresults/|\bdata/|\bscripts/|\bsrc/|\.py\b|\bPhase \d",
     re.IGNORECASE,
 )
+DEVELOPER_COPY = re.compile(r"publication|manifest|deployment|curated bundle|developer", re.IGNORECASE)
 
 
 def _visible_text(app: AppTest) -> list[str]:
@@ -45,9 +46,36 @@ def test_all_rendered_pages_omit_internal_copy_and_retain_real_statuses() -> Non
             references = INTERNAL.findall(text)
             if references:
                 problems.append((page, references, text[:100]))
+            if DEVELOPER_COPY.search(text):
+                problems.append((page, "developer copy", text[:100]))
     assert not problems, problems
 
 
 def test_public_ui_source_does_not_render_record_paths() -> None:
     text = (ROOT / "src/module7/webapp/pages.py").read_text(encoding="utf-8")
     assert "Evidence source" not in text
+
+
+def test_public_metadata_uses_readable_labels() -> None:
+    app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=120).run()
+    assert not app.exception
+    app.sidebar.radio[0].set_value("Rectangle measurements").run()
+    assert not app.exception
+    visible = "\n".join(_visible_text(app))
+    assert "Calibration source" in visible
+    assert "module2-originals-module7-recompute" not in visible
+    assert "Metric baseline" in visible
+
+
+def test_status_labels_are_student_facing_but_machine_statuses_remain_supported() -> None:
+    from module7.webapp.ui import status_text
+
+    assert status_text("PHYSICAL VALIDATION COMPLETE UNDER EQUIVALENT-RECTANGULAR-EDGE ASSUMPTION") == (
+        "Validated under stated assumption"
+    )
+    assert status_text("EXPERIMENT DOCUMENTED — PHYSICAL REFERENCE ESTABLISHED; STEREO CIRCLE GEOMETRY REJECTED") == (
+        "Circle geometry rejected"
+    )
+    assert status_text("EXPERIMENT COMPLETE — PHYSICAL MEASUREMENTS DOCUMENTED; STEREO TRIANGLE ACCURACY NOT VALIDATED") == (
+        "Physical accuracy not validated"
+    )

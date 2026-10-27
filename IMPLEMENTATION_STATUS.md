@@ -13,6 +13,20 @@ and before ending each work session. Do not infer completion from the existence 
 - **Relevant repository:** Module 7 repository has not been initialized or identified yet; repository topology is pending user approval.
 - **Current implementation phase:** Phase 3D — Standalone UI alignment and proposed evidence preparation
 
+## Latest Local UI Polish Review — 2026-10-26
+
+- **Status:** `IMPLEMENTED LOCALLY — PUBLIC REVIEW PENDING`
+- Replaced infrastructure-facing wording in rendered pages with concise academic explanations.
+- Added readable metric cards and diagnostic tables for calibration, baseline, depth, parallax,
+  reprojection, and shape-specific quality results. Full technical records remain available in
+  collapsed detail sections.
+- Preserved machine-readable experiment statuses and all scientific findings; no calibration,
+  reconstruction, measurement, threshold, or evidence file was changed.
+- The dashboard checkout was synchronized for local smoke testing only. No dashboard commit,
+  push, or deployment was performed.
+- Live rectangle-page verification remains a user approval check because the deployed application
+  was not changed during this review.
+
 ## Current Status
 
 - **Overall project status:** Phase 2A software foundation, Phase 2B real calibration/stereo validation, and Phase 3 object-dimension software implementation are complete for their stated evidence. Phase 3A now has three real rectangle experiments; the third has verified FREE ADMISSION ruler measurements, but stereo accuracy remains outside the physical intervals and pose/model consistency remains unresolved.
