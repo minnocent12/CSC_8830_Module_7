@@ -1,0 +1,49 @@
+# Python and build artifacts
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Streamlit/local configuration
+.streamlit/*
+!.streamlit/config.toml
+.streamlit/secrets.toml
+.env
+.env.*
+!.env.example
+
+# Operating system/editor files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# User-provided raw data: keep directories, do not publish captures by default
+data/calibration/*
+data/stereo_pairs/*
+data/objects/*
+data/room_videos/*
+data/physical_validation/*
+!data/calibration/.gitkeep
+!data/stereo_pairs/.gitkeep
+!data/objects/.gitkeep
+!data/room_videos/.gitkeep
+
+# Generated results and local review files
+results/calibration/*
+results/object_measurements/*
+results/room_measurements/*
+results/stereo_diagnostics/*
+!results/calibration/.gitkeep
+!results/object_measurements/.gitkeep
+!results/room_measurements/.gitkeep
+
+# Local visual-review outputs; never part of the public runtime bundle
+local_review/
