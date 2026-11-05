@@ -9,6 +9,8 @@ import streamlit as st
 
 from module7.webapp._page import PageSpec
 from module7.webapp.evidence import load_curated_bundle
+from module7.webapp.room_page import get_pages as get_room_pages
+from module7.webapp.question2_page import get_pages as get_question2_pages
 from module7.webapp.ui import (
     metric_row,
     page_header,
@@ -296,10 +298,10 @@ def _shape_page(title: str, shape: str, specs: tuple[EvidenceSpec, ...]) -> None
 
 
 def get_pages() -> tuple[PageSpec, ...]:
-    """Return the standalone Module 7 Question 1 pages."""
+    """Return the standalone Module 7 Question 1 and Question 3 pages."""
     return (
         PageSpec(_MODULE, "Overview", 0, _overview_page),
         PageSpec(_MODULE, "Rectangle measurements", 10, lambda: _shape_page("Rectangle measurements", "rectangle", RECTANGLE_SPECS)),
         PageSpec(_MODULE, "Circle measurements", 20, lambda: _shape_page("Circle measurements", "circle", CIRCLE_SPECS)),
         PageSpec(_MODULE, "Polygon measurements", 30, lambda: _shape_page("Polygon measurements", "polygon", POLYGON_SPECS)),
-    )
+    ) + get_question2_pages() + get_room_pages()

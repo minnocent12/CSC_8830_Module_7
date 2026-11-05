@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "publication_status": "PUBLIC_SAFE_SUMMARY",
+  "scientific_status": "DIAGNOSTIC-ONLY PARTIAL RECONSTRUCTION — ROOM DIMENSIONS NOT RECOVERED.",
+  "method": {
+    "capture": "Calibrated moving-camera smartphone video",
+    "video_resolution": "3840 x 2160 landscape",
+    "camera_model": "iPhone 15 Pro Max rear 1x main camera",
+    "intrinsics": "Video-mode intrinsics and distortion were validated separately; the private calibration file is not bundled.",
+    "metric_scale": "A stationary 9 x 6 checkerboard with 25.0 mm squares defines the metric reference frame.",
+    "scale_rule": "Unit translations from monocular essential-matrix recovery are not treated as metric. Scale is accepted only through validated geometric connectivity to the checkerboard frame.",
+    "room_geometry": "Only directly supported, metric-connected floor, wall, and ceiling landmarks may define room dimensions. Hidden corners are not completed by rectangular-room assumptions."
+  },
+  "aggregate_diagnostics": {
+    "room_recordings_reviewed": 5,
+    "accepted_checkerboard_metric_poses": 20,
+    "metric_anchor_triangulation_points": 102,
+    "accepted_metric_camera_views": 9,
+    "epipolar_verified_connections": 166,
+    "homography_only_connections": 76,
+    "weak_connections": 670,
+    "metric_room_endpoint_gate": "BLOCKED"
+  },
+  "dimension_results": {
+    "room_length": {"value_mm": null, "status": "N/A", "reason": "Required metric-connected endpoints were not reconstructed."},
+    "room_width": {"value_mm": null, "status": "N/A", "reason": "Required metric-connected endpoints were not reconstructed."},
+    "room_height": {"value_mm": null, "status": "N/A", "reason": "Required metric-connected endpoints were not reconstructed."}
+  },
+  "validation": {
+    "independent_physical_reference": "Held out for validation only; exact values are intentionally excluded from this public summary.",
+    "comparison_status": "No video-derived room dimensions were available for error calculation.",
+    "percentage_errors": "N/A",
+    "instrument_uncertainty": "Not included in the public runtime summary."
+  },
+  "limitations": [
+    "Image-space feature matches and homographies are not sufficient evidence of metric registration.",
+    "Some room-boundary endpoints did not have the required validated metric 2D/3D connectivity.",
+    "Original room recordings, private calibration artifacts, physical measurements, and diagnostic frames remain local-only.",
+    "The result is a diagnostic partial reconstruction, not a successful room-dimension measurement."
+  ],
+  "reproducibility": {
+    "public_runtime_inputs": ["This summary", "The existing curated public Question 1 evidence bundle"],
+    "private_experiment_inputs": "Not bundled or required by the public page.",
+    "status_classification": "experimentally validated intermediate diagnostics; final room dimensions pending/unavailable"
+  }
+}

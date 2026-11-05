@@ -1,4 +1,4 @@
-"""Deterministic contract and evidence-integrity tests for the Question 1 web app."""
+"""Deterministic contract and evidence-integrity tests for the Module 7 web app."""
 from __future__ import annotations
 
 import json
@@ -23,6 +23,8 @@ def test_page_provider_has_required_contract_and_stable_order() -> None:
         "Rectangle measurements",
         "Circle measurements",
         "Polygon measurements",
+        "Question 2 uncalibrated stereo",
+        "Question 3 room reconstruction",
     ]
     for page in pages:
         assert isinstance(page, PageSpec)
@@ -109,6 +111,24 @@ def test_streamlit_shape_pages_smoke_without_exceptions(page_label: str, expecte
     assert len(app.error) == expected_errors
 
 
+def test_room_page_renders_pending_or_local_diagnostics_without_exceptions() -> None:
+    from streamlit.testing.v1 import AppTest
+
+    app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=120).run()
+    app.sidebar.radio[0].set_value("Question 3 room reconstruction").run()
+    assert not app.exception
+
+
+def test_public_question3_summary_is_path_free_and_dimension_safe() -> None:
+    summary_path = ROOT / "data" / "proposed_public_demo" / "question3_summary.json"
+    summary = json.loads(summary_path.read_text(encoding="utf-8"))
+    assert summary["scientific_status"] == "DIAGNOSTIC-ONLY PARTIAL RECONSTRUCTION — ROOM DIMENSIONS NOT RECOVERED."
+    assert all(summary["dimension_results"][name]["value_mm"] is None for name in ("room_length", "room_width", "room_height"))
+    serialized = summary_path.read_text(encoding="utf-8")
+    for private_marker in ("room_videos", "physical_reference.json", "/Users/", "IMG_7665.MOV", "IMG_7684.MOV"):
+        assert private_marker not in serialized
+
+
 def test_clean_clone_renders_from_curated_bundle_without_original_evidence(tmp_path: Path) -> None:
     import shutil
     from streamlit.testing.v1 import AppTest
@@ -120,7 +140,13 @@ def test_clean_clone_renders_from_curated_bundle_without_original_evidence(tmp_p
     shutil.copytree(ROOT / "data" / "proposed_public_demo", tmp_path / "data" / "proposed_public_demo")
     app = AppTest.from_file(str(tmp_path / "app.py"), default_timeout=120).run()
     assert not app.exception
-    for page_label in ("Rectangle measurements", "Circle measurements", "Polygon measurements"):
+    for page_label in (
+        "Rectangle measurements",
+        "Circle measurements",
+        "Polygon measurements",
+        "Question 2 uncalibrated stereo",
+        "Question 3 room reconstruction",
+    ):
         app.sidebar.radio[0].set_value(page_label).run()
         assert not app.exception, page_label
 

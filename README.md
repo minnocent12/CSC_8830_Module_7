@@ -75,6 +75,27 @@ dashboard integration is a later authorized phase. The vendored `csc8830-ui` 0.6
 generated `.streamlit/config.toml` provide the same shell and theme conventions used by the
 earlier modules.
 
+## Standalone Question 3 webpage
+
+The standalone Question 3 page is available through the same `app.py` command and is labeled
+**Question 3 room reconstruction**. It reads the tracked, path-free
+`data/proposed_public_demo/question3_summary.json` artifact and presents the calibrated video
+method, checkerboard metric anchoring, aggregate intermediate diagnostics, rejected metric
+connectivity, and the final N/A room-dimension status. Exact independent tape-measure values,
+private calibration files, room videos, and local reconstruction results are not runtime
+dependencies and are not bundled.
+
+The public page is self-contained; private report narratives, room evidence, and demonstration
+materials are intentionally kept outside the public runtime bundle. No public dashboard
+integration, deployment, or demonstration video has been completed.
+
+## Question 2 and submission preparation
+
+The standalone **Question 2 uncalibrated stereo** page provides a theory overview and clearly marks
+the required handwritten derivation as a separate submission artifact. Typed mathematics is not an
+accepted substitute for the submitted derivation. Private report and demonstration preparation
+materials remain outside the public runtime bundle.
+
 ## Proposed public evidence bundle
 
 `data/proposed_public_demo/manifest.json` describes the compact runtime bundle containing
