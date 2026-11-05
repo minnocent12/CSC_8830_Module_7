@@ -32,6 +32,29 @@ def test_page_provider_has_required_contract_and_stable_order() -> None:
         assert callable(page.render)
 
 
+def test_page_headers_use_the_correct_module_question_eyebrow() -> None:
+    from streamlit.testing.v1 import AppTest
+
+    expected = {
+        "Overview": "Module 7 / Computer Vision",
+        "Rectangle measurements": "Question 1 / Calibrated stereo",
+        "Circle measurements": "Question 1 / Calibrated stereo",
+        "Polygon measurements": "Question 1 / Calibrated stereo",
+        "Question 2 uncalibrated stereo": "Question 2 / Uncalibrated stereo",
+        "Question 3 room reconstruction": "Question 3 / Room dimension estimation",
+    }
+    app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=120).run()
+    for page_label, eyebrow in expected.items():
+        app.sidebar.radio[0].set_value(page_label).run()
+        assert not app.exception, page_label
+        rendered = "\n".join(
+            element.proto.body
+            for element in app.get("html")
+            if "csc8830-eyebrow" in element.proto.body
+        )
+        assert eyebrow in rendered, (page_label, rendered)
+
+
 def test_saved_examples_load_without_fabricating_data() -> None:
     bundle, error = load_curated_bundle(ROOT)
     assert error is None and bundle is not None

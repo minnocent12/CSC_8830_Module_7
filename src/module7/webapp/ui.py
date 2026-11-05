@@ -85,10 +85,16 @@ def _public_value(value: Any, key: str | None = None) -> Any:
     return value
 
 
-def page_header(title: str, description: str) -> None:
+def page_header(
+    title: str,
+    description: str,
+    *,
+    eyebrow: str = "Question 1 / Calibrated stereo",
+) -> None:
+    """Render a public page header with a page-specific eyebrow."""
     design_page_header(
         _clean_public_text(title),
-        eyebrow="Question 1 / Calibrated stereo",
+        eyebrow=_clean_public_text(eyebrow),
         description=_clean_public_text(description),
     )
 

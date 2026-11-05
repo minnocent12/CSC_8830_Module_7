@@ -11,6 +11,7 @@ def render_question2_page() -> None:
     page_header(
         "Question 2 uncalibrated stereo",
         "Theory overview for the required handwritten derivation of projective stereo geometry.",
+        eyebrow="Question 2 / Uncalibrated stereo",
     )
     st.info("This public page is theory-only. The original handwritten scan is intentionally excluded from the runtime application and remains part of the private submission package.")
     section("Assignment requirement")

@@ -38,6 +38,7 @@ def render_room_page() -> None:
     page_header(
         "Question 3 room reconstruction",
         "Calibrated multiview room evidence with explicit metric-connectivity and endpoint gates.",
+        eyebrow="Question 3 / Room dimension estimation",
     )
     summary = _load_public_summary()
     if summary is None:

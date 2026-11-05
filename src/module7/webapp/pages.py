@@ -257,6 +257,7 @@ def _overview_page() -> None:
         "Question 1 demonstrates the existing Module 7 calibrated-stereo workflow: calibrated "
         "camera observations are triangulated into metric 3D points before physical dimensions "
         "are calculated.",
+        eyebrow="Module 7 / Computer Vision",
     )
     render_bundled_notice()
     render_bundle_summary(_ROOT)
@@ -290,6 +291,7 @@ def _shape_page(title: str, shape: str, specs: tuple[EvidenceSpec, ...]) -> None
             "circle": "Select a saved circular experiment to inspect perimeter correspondence, 3D planarity, and the diameter acceptance decision.",
             "polygon": "Inspect the saved triangle experiment: ordered vertices are triangulated first, then each visible 3D edge is measured.",
         }[shape],
+        eyebrow="Question 1 / Calibrated stereo",
     )
     labels = [spec.label for spec in specs]
     selected_label = st.selectbox("Evidence example", labels)
